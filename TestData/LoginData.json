@@ -1,0 +1,53 @@
+[
+
+  {
+    "label":"validCredenatial",
+    "username":"admin",
+     "password":"admin",
+     "status":true
+
+  },
+
+   {
+    "label":"invalid username",
+    "username":"ashu",
+     "password":"admin"
+      ,
+     "status":false
+  },
+
+   {
+    "label":"invalid password",
+    "username":"ashu",
+     "password":"admin"
+      ,
+     "status":false
+  },
+
+   {
+    "label":"blank filed",
+    "username":"",
+     "password":""
+       ,
+     "status":false
+  },
+
+   {
+    "label":"blank username",
+    "username":"",
+     "password":"admin"
+         ,
+     "status":false
+  },
+   {
+    "label":"blank password",
+    "username":"ashu",
+     "password":""
+        ,
+     "status":false
+  }
+
+
+
+
+]
