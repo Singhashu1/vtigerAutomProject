@@ -1,0 +1,23 @@
+
+{
+  
+     "login":{
+         
+         "userName":"admin",
+         "password":"admin"
+
+
+     },
+
+
+     "createContactData":{
+            "firstname":"ashutosh",
+            "lastname":"singh",
+            "sirname":"Mr.",
+            "fax":"1234"
+
+     }
+
+}
+
+ 

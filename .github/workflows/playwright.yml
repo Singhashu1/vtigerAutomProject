@@ -1,0 +1,86 @@
+name: Playwright Automation
+
+on:
+  workflow_dispatch:
+    inputs:
+
+      env:
+        description: "Select Environment"
+        required: true
+        default: "qa"
+        type: choice
+        options:
+          - qa
+          - uat
+          - prod
+
+      server:
+        description: "Enter Server URL"
+        required: true
+        default: "https://www.amazon.in"
+        type: string
+
+      branch:
+        description: "Select Branch"
+        required: true
+        default: "main"
+        type: string
+
+      test_type:
+        description: "Select Test Type"
+        required: true
+        default: "all"
+        type: choice
+        options:
+          - all
+          - smoke
+          - regression
+
+jobs:
+  playwright-test:
+
+    runs-on: ubuntu-latest
+
+    env:
+      TEST_ENV: ${{ inputs.env }}
+      SERVER_URL: ${{ inputs.server }}
+      TEST_TYPE: ${{ inputs.test_type }}
+
+    steps:
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branch }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run All Tests
+        if: ${{ inputs.test_type == 'all' }}
+        run: npx playwright test
+
+      - name: Run Smoke Tests
+        if: ${{ inputs.test_type == 'smoke' }}
+        run: npx playwright test tests/smoke
+
+      - name: Run Regression Tests
+        if: ${{ inputs.test_type == 'regression' }}
+        run: npx playwright test tests/regression
+
+      - name: Upload Playwright Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7

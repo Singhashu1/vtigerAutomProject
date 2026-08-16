@@ -1,0 +1,25 @@
+[
+ {
+   "firstName":"ashutosh",
+   "lastName":"singh",
+   "companyname":"tata",
+   "fax":"22140"
+
+ },
+  {
+   "firstName":"satyam",
+   "lastName":"singh",
+   "companyname":"mahindra",
+   "fax":"22142"
+
+ },
+
+  {
+   "firstName":"ashok",
+   "lastName":"singh",
+   "companyname":"suzki",
+   "fax":"22143"
+
+ }
+
+]
